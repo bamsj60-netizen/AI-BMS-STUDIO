@@ -181,6 +181,17 @@
         ::-webkit-scrollbar-thumb { background: var(--bg-tertiary); border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
         
+        /* Sidebar scrollbar */
+        .sidebar::-webkit-scrollbar { width: 4px; }
+        .sidebar::-webkit-scrollbar-track { background: transparent; }
+        .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+        .sidebar::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+        
+        /* Responsive sidebar */
+        @media (max-height: 700px) {
+            .sidebar .nav-item { padding-top: 0.6rem; padding-bottom: 0.6rem; }
+        }
+        
         .status-online { color: #10b981; }
         .status-offline { color: #ef4444; }
         
@@ -360,8 +371,8 @@
     <!-- Main Dashboard -->
     <div id="dashboard" class="hidden min-h-screen flex">
         <!-- Sidebar -->
-        <aside class="sidebar w-72 fixed h-full overflow-y-auto slide-in z-40">
-            <div class="p-6">
+        <aside class="sidebar w-72 fixed h-full flex flex-col slide-in z-40">
+            <div class="flex-1 overflow-y-auto p-6 pb-48">
                 <div class="flex items-center gap-4 mb-10">
                     <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg">
                         <i class="fas fa-server text-xl text-white"></i>
@@ -428,17 +439,18 @@
                 </nav>
             </div>
 
-            <div class="absolute bottom-0 left-0 right-0 p-6">
-                <div class="card rounded-xl p-4 mb-4">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold" id="sidebarAvatar">A</div>
+            <!-- Fixed Bottom Profile Section -->
+            <div class="sticky bottom-0 left-0 right-0 p-4 border-t" style="background: var(--bg-secondary); border-color: var(--border);">
+                <div class="card rounded-xl p-3 mb-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold flex-shrink-0" id="sidebarAvatar">A</div>
                         <div class="flex-1 min-w-0">
-                            <p class="font-medium truncate" id="sidebarUser">Admin</p>
+                            <p class="font-medium truncate text-sm" id="sidebarUser">Admin</p>
                             <p class="text-xs truncate" style="color: var(--text-secondary)" id="sidebarRole">Developer</p>
                         </div>
                     </div>
                 </div>
-                <button onclick="logout()" class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-all border border-red-500/20">
+                <button onclick="logout()" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-all border border-red-500/20 text-sm">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Logout</span>
                 </button>
